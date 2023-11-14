@@ -22,23 +22,25 @@ app = Flask(__name__)
 CORS(app)
 app.secret_key = b'bb,hjd87li7fiopsddfrgt5'
 
+
 def validate_session():
     def wraper(function):
         @wraps(function)
         def decorator(*args, **kwargs):
-            user=session.get("user","")
+            user = session.get("user", "")
             if user:
                 return function(*args, **kwargs)
             else:
                 return redirect(url_for("login"))
         return decorator
-    return wraper                
+    return wraper
+
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
-    """ 
-    Si el usuario accede carga la página muestra el formulario, 
-    si no valida los datos del formulario para redirigir al home 
+    """
+    Si el usuario accede carga la página muestra el formulario,
+    si no valida los datos del formulario para redirigir al home
     """
 
     if request.method=="GET":           
