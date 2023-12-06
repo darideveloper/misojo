@@ -14,6 +14,7 @@ DATABASE_HOST = os.environ['DATABASE_HOST']
 DATABASE_NAME = os.environ['DATABASE_NAME']
 DATABASE_USER = os.environ['DATABASE_USER']
 DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
+PORT = int(os.environ.get('PORT', 5000))
 
 Database = MySQL(DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD)
 CURRENTFOLDER = os.path.dirname(__file__)
@@ -160,4 +161,4 @@ def player_with_page(filename, page):
     return render_template('player.html', audio_path=audio_path, filename=filename, page=page)
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=True, port=PORT)
